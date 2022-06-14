@@ -1,0 +1,13 @@
+[package]
+name = "yew_app"
+version = "0.1.0"
+edition = "2021"
+authors = ["ShineShao <xiaoshaoqq@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+yew-router = "0.16.0"
+yew = "0.19.3"
+serde = "1.0.137"
+serde_json = "1.0.81"
