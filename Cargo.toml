@@ -11,3 +11,4 @@ yew-router = "0.16.0"
 yew = "0.19.3"
 serde = "1.0.137"
 serde_json = "1.0.81"
+stylist = {version = "0.10.1", features = ["yew"]}
