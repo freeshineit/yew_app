@@ -28,7 +28,7 @@ pub fn home() -> Html {
           </div>
           <div>
             <h1>{"Home"}</h1>
-            <img src="/logo.png" />
+            <img src="/assets/filter.png"  />
           </div>
       </Layout>
     }
