@@ -1,5 +1,18 @@
 ## yew app
 
+
+### Use
+
+```bash
+
+# install trunk
+brew install trunk
+
+# development
+# https://trunkrs.dev/
+trunk serve
+```
+
 ### Route
 
 
