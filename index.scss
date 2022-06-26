@@ -136,6 +136,12 @@ table {
 
 html,
 body {
-  background-color: #1b1b1d;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
+}
+
+// --------------------------
+
+.flex {
+  display: flex;
 }
