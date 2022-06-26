@@ -16,7 +16,7 @@ pub fn layout(props: &LayoutProps) -> Html {
           flex-direction: column;
           width: 100%;
           min-height: 100vh;
-          background-color: #1b1b1d;
+          background-color: #FFF;
           padding-top: 60px;
         "#
     )
@@ -46,7 +46,8 @@ pub fn layout_header(props: &LayoutHeaderProps) -> Html {
         top: 0;
         left: 0;
         right: 0;
-        background-color: #242526;
+        background-color: #FFF;
+        box-shadow: 0 2px 8px #f0f1f2;
       "#
     )
     .expect("Failed to mount style!");
