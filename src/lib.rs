@@ -8,35 +8,44 @@ use pages::todo_list::TodoList;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
+use crate::components::atoms::layout::{Layout, LayoutHeader};
+
 // root route
 #[derive(Debug, Clone, Copy, PartialEq, Routable)]
 pub enum Route {
-  #[at("/")]
-  Home,
-  #[at("todo_list")]
-  TodoList,
-  #[not_found]
-  #[at("/404")]
-  NotFound,
+    #[at("/")]
+    Home,
+    #[at("/todo_list")]
+    TodoList,
+    #[not_found]
+    #[at("/404")]
+    NotFound,
 }
 
 pub fn switch(routes: &Route) -> Html {
-  match routes {
-    Route::Home => html! {
-      <Home />
-    },
-    Route::TodoList => html! {
-      <TodoList />
-    },
-    Route::NotFound => html! {<NotFound /> },
-  }
+    html! {
+     <Layout>
+       <LayoutHeader />
+       {
+         match routes {
+           Route::Home => html! {
+             <Home />
+           }, 
+           Route::TodoList => html! {
+             <TodoList />
+           },
+           Route::NotFound => html! {<NotFound /> },
+         }
+       }
+     </Layout>
+    }
 }
 
 #[function_component(App)]
 pub fn app() -> Html {
-  html! {
-      <BrowserRouter>
-          <Switch<Route> render={Switch::render(switch)} />
-      </BrowserRouter>
-  }
+    html! {
+        <BrowserRouter>
+            <Switch<Route> render={Switch::render(switch)} />
+        </BrowserRouter>
+    }
 }
