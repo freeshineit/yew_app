@@ -8,7 +8,7 @@ use pages::todo_list::TodoList;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use crate::components::atoms::layout::{Layout, LayoutHeader};
+use crate::components::atoms::layout::{Layout, LayoutFooter, LayoutHeader};
 
 // root route
 #[derive(Debug, Clone, Copy, PartialEq, Routable)]
@@ -30,13 +30,14 @@ pub fn switch(routes: &Route) -> Html {
          match routes {
            Route::Home => html! {
              <Home />
-           }, 
+           },
            Route::TodoList => html! {
              <TodoList />
            },
            Route::NotFound => html! {<NotFound /> },
          }
        }
+       <LayoutFooter />
      </Layout>
     }
 }
