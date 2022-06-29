@@ -23,6 +23,7 @@ pub fn todo_list() -> Html {
             width: 400px;
             box-shadow: 0 0 3px 2px #f0f1f2;
             padding: 24px;
+            margin-bottom: 40px;
           }
 
           h1 {
@@ -71,14 +72,17 @@ pub fn todo_list() -> Html {
             font-size: 20px;
           }
 
-          .check-btn.completed {
-            color: green;
-          }
-
           .delete-btn {
             color: red;
           }
 
+          .completed .check-btn {
+            color: green;
+          }
+
+          .completed .todo-title {
+            text-decoration:line-through;
+          }
       "#
     )
     .expect("Failed to mount style!");
@@ -114,7 +118,33 @@ pub fn todo_list() -> Html {
         let input: HtmlInputElement = e.target_unchecked_into();
         let value = input.value();
         console::log!("Received update", value);
+        // console::log!("Received update", e);
     });
+
+    let handle_key_down = {
+        let input_ref = input_ref.clone();
+        let todos = todos.clone();
+
+        Callback::from(move |e: KeyboardEvent| {
+            if e.key().to_owned() == "Enter" {
+                if let Some(input) = input_ref.cast::<HtmlInputElement>() {
+                    let value = input.value();
+
+                    if value.trim().is_empty() {
+                        return;
+                    }
+
+                    let mut todos_state = todos.deref().clone();
+                    todos_state.name = value.to_owned();
+                    let todo = Todo::new(value.trim().to_owned());
+                    todos_state.add(todo);
+                    todos.set(todos_state);
+
+                    input.set_value("");
+                }
+            }
+        })
+    };
 
     let handle_toggle_complete = |idx: usize| {
         let todos = todos.clone();
@@ -140,7 +170,7 @@ pub fn todo_list() -> Html {
         <div class="center">
           <h1>{"Todo App"}</h1>
           <div class="flex">
-            <Input placeholder="What needs to be done?" oninput={handle_input} ref={input_ref}/>
+            <Input placeholder="What needs to be done?" oninput={handle_input} onkeydown={handle_key_down} ref={input_ref}/>
             <Button onclick={handle_add}>{"Add"}</Button>
           </div>
           <ul>
@@ -153,10 +183,10 @@ pub fn todo_list() -> Html {
                 };
 
                 html! {
-                  <li key={&*entry.description}>
-                    <span>{&*entry.description}</span>
+                  <li key={&*entry.description} class={classes!(completed)}>
+                    <span class="todo-title">{&*entry.description}</span>
                     <div>
-                      <span class={classes!("check-btn", completed)} onclick={handle_toggle_complete(idx)}>
+                      <span class="check-btn" onclick={handle_toggle_complete(idx)}>
                         <svg viewBox="0 0 1024 1024" version="1.1"  width="1em" height="1em" fill="currentColor" focusable="false">
                         {
                           if entry.completed {
@@ -233,7 +263,7 @@ impl Todos {
     }
 
     fn add(&mut self, todo: Todo) {
-        self.todos.push(todo);
+        self.todos.insert(0, todo);
     }
 
     fn remove(&mut self, idx: usize) {
