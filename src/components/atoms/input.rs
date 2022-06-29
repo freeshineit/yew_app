@@ -1,3 +1,4 @@
+use gloo_console as console;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
@@ -8,6 +9,7 @@ pub struct ButtonProps {
     pub class: Option<String>,
     pub placeholder: Option<String>,
     pub oninput: Option<Callback<InputEvent>>,
+    pub onkeydown: Option<Callback<KeyboardEvent>>,
 }
 
 #[styled_component(Input)]
@@ -45,5 +47,12 @@ pub fn input(props: &ButtonProps) -> Html {
     )
     .expect("Failed to mount style!");
 
-    html! {<input class={classes!(style, props.class.to_owned())} placeholder={props.placeholder.to_owned()} oninput={props.oninput.clone()}/>}
+    html! {
+        <input
+            class={classes!(style, props.class.to_owned())}
+            placeholder={props.placeholder.to_owned()}
+            oninput={props.oninput.clone()}
+            onkeydown={props.onkeydown.clone()}
+            />
+    }
 }
