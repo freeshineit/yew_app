@@ -19,9 +19,8 @@ pub fn home() -> Html {
           margin: 0 10px;
         }
 
-        .nested {
-            background-color: blue;
-            width: 100px
+        .list {
+          margin-top: 50px;
         }
     "#
     )
@@ -30,7 +29,7 @@ pub fn home() -> Html {
     html! {
       <div class={style}>
           <img src="/assets/logo.png"  />
-          <div>
+          <div class="list">
             <Link<Route> to={Route::Home}>{"Home"}</Link<Route>>
             <Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>>
           </div>
