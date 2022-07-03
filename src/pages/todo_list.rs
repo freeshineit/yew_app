@@ -1,5 +1,7 @@
 use crate::components::atoms::button::Button;
 use crate::components::atoms::input::Input;
+use crate::components::icons::check::CheckIcon;
+use crate::components::icons::delete::DeleteIcon;
 use gloo_console as console;
 use serde::{Deserialize, Serialize};
 use std::ops::Deref;
@@ -187,26 +189,10 @@ pub fn todo_list() -> Html {
                     <span class="todo-title">{&*entry.description}</span>
                     <div>
                       <span class="check-btn" onclick={handle_toggle_complete(idx)}>
-                        <svg viewBox="0 0 1024 1024" version="1.1"  width="1em" height="1em" fill="currentColor" focusable="false">
-                        {
-                          if entry.completed {
-                            html! {
-                              <path d="M433.1 657.7c12.7 17.7 39 17.7 51.7 0l210.6-292c3.8-5.3 0-12.7-6.5-12.7H642c-10.2 0-19.9 4.9-25.9 13.3L459 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H315c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8z" />
-                            }
-                          } else {
-                            html!{}
-                          }
-                        }
-                          <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z" />
-                        </svg>
+                        <CheckIcon checked={entry.completed}/>
                       </span>
                       <span class="delete-btn" onclick={handle_delete(idx)}>
-                        <svg viewBox="0 0 1024 1024"  width="1em" height="1em" fill="currentColor" focusable="false">
-                          <path d="M768 384c-19.2 0-32 12.8-32 32l0 377.6c0 25.6-19.2 38.4-38.4 38.4L326.4 832c-25.6 0-38.4-19.2-38.4-38.4L288 416C288 396.8 275.2 384 256 384S224 396.8 224 416l0 377.6c0 57.6 44.8 102.4 102.4 102.4l364.8 0c57.6 0 102.4-44.8 102.4-102.4L793.6 416C800 396.8 787.2 384 768 384z" />
-                          <path d="M460.8 736l0-320C460.8 396.8 448 384 435.2 384S396.8 396.8 396.8 416l0 320c0 19.2 12.8 32 32 32S460.8 755.2 460.8 736z" />
-                          <path d="M627.2 736l0-320C627.2 396.8 608 384 588.8 384S563.2 396.8 563.2 416l0 320C563.2 755.2 576 768 588.8 768S627.2 755.2 627.2 736z"/>
-                          <path d="M832 256l-160 0L672 211.2C672 166.4 633.6 128 588.8 128L435.2 128C390.4 128 352 166.4 352 211.2L352 256 192 256C172.8 256 160 268.8 160 288S172.8 320 192 320l640 0c19.2 0 32-12.8 32-32S851.2 256 832 256zM416 211.2C416 198.4 422.4 192 435.2 192l153.6 0c12.8 0 19.2 6.4 19.2 19.2L608 256l-192 0L416 211.2z" />
-                          </svg>
+                          <DeleteIcon />
                       </span>
                     </div>
                   </li>
@@ -274,167 +260,3 @@ impl Todos {
         self.todos[idx].completed = !self.todos[idx].completed;
     }
 }
-
-// type List = Vec<Item>;
-
-// impl List {
-//     fn new(items: Vec<Item>) -> List {
-//         items
-//     }
-
-//     fn remove(&mut self, index: usize) {
-//         self.remove(index);
-//     }
-
-//     fn add(&mut self, item: Item) {
-//         self.push(item);
-//     }
-// }
-
-// /// https://github.com/yewstack/yew/blob/yew-v0.19.3/examples/todomvc/src/state.rs
-// #[derive(Debug, Serialize, Deserialize)]
-// struct Todo {
-//     pub entries: Vec<Entry>,
-//     pub filter: Filter,
-//     pub edit_value: String,
-// }
-
-// impl Todo {
-//     fn total(&self) -> usize {
-//         self.entries.len()
-//     }
-
-//     fn total_completed(&self) -> usize {
-//         self.entries
-//             .iter()
-//             .filter(|e| Filter::Completed.fits(e))
-//             .count()
-//     }
-
-//     fn is_all_completed(&self) -> bool {
-//         let mut filtered_iter = self
-//             .entries
-//             .iter()
-//             .filter(|e| Filter::Completed.fits(e))
-//             .peekable();
-
-//         if filtered_iter.peek().is_none() {
-//             return false;
-//         }
-
-//         filtered_iter.all(|e| e.completed)
-//     }
-
-//     fn clear_completed(&mut self) {
-//         let entries = self
-//             .entries
-//             .drain(..)
-//             .filter(|e| Filter::Active.fits(e))
-//             .collect();
-//         self.entries = entries
-//     }
-
-//     fn toggle(&mut self, idx: usize) {
-//         let filter = self.filter;
-//         let entry = self
-//             .entries
-//             .iter_mut()
-//             .filter(|e| filter.fits(e))
-//             .nth(idx)
-//             .unwrap();
-
-//         entry.completed = !entry.completed;
-//     }
-
-//     fn toggle_all(&mut self, value: bool) {
-//         for entry in &mut self.entries {
-//             if self.filter.fits(&entry) {
-//                 entry.completed = value
-//             }
-//         }
-//     }
-
-//     fn toggle_edit(&mut self, idx: usize) {
-//         let filter = self.filter;
-
-//         let entry = self
-//             .entries
-//             .iter_mut()
-//             .filter(|e| filter.fits(e))
-//             .nth(idx)
-//             .unwrap();
-
-//         entry.editing = !entry.editing;
-//     }
-
-//     fn clear_all_edit(&mut self) {
-//         for entry in &mut self.entries {
-//             entry.editing = false;
-//         }
-//     }
-
-//     fn completed_edit(&mut self, idx: usize, val: String) {
-//         if val.is_empty() {
-//             self.remove(idx);
-//         } else {
-//             let filter = self.filter;
-//             let entry = self
-//                 .entries
-//                 .iter_mut()
-//                 .filter(|e| filter.fits(e))
-//                 .nth(idx)
-//                 .unwrap();
-
-//             entry.description = val;
-//             entry.editing = !entry.editing;
-//         }
-//     }
-
-//     fn remove(&mut self, idx: usize) {
-//         let idx = {
-//             let entries = self
-//                 .entries
-//                 .iter()
-//                 .().map()
-//                 .filter(|&(_, e)| self.filter.fits(e))
-//                 .collect::<Vec<_>>();
-
-//             let &(idx, _) = entries.get(idx).unwrap();
-//             idx
-//         };
-
-//         self.entries.remove(idx);
-//     }
-// }
-
-// #[derive(Debug, Serialize, Deserialize)]
-// struct Entry {
-//     description: String,
-//     completed: bool,
-//     editing: bool,
-// }
-
-// #[derive(Debug, Serialize, Deserialize, Copy, Clone)]
-// enum Filter {
-//     All,
-//     Active,
-//     Completed,
-// }
-
-// impl Filter {
-//     fn fits(&self, entry: &Entry) -> bool {
-//         match &self {
-//             Filter::All => true,
-//             Filter::Active => !entry.completed,
-//             Filter::Completed => entry.completed,
-//         }
-//     }
-
-//     fn as_href(&self) -> &'static str {
-//         match &self {
-//             Filter::All => "#/",
-//             Filter::Active => "#/active",
-//             Filter::Completed => "#/completed",
-//         }
-//     }
-// }
