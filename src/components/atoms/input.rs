@@ -1,4 +1,3 @@
-use gloo_console as console;
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
