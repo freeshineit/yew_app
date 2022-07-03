@@ -93,26 +93,31 @@ pub fn todo_list() -> Html {
 
     let input_ref = use_node_ref();
 
+    /// add button and `Enter` key world
+    let add_todo = |todos: &UseStateHandle<Todos>, input_ref: &NodeRef| {
+        if let Some(input) = input_ref.cast::<HtmlInputElement>() {
+            let value = input.value();
+
+            if value.trim().is_empty() {
+                return;
+            }
+
+            let mut todos_state = todos.deref().clone();
+            todos_state.name = value.to_owned();
+            let todo = Todo::new(value.trim().to_owned());
+            todos_state.add(todo);
+            todos.set(todos_state);
+
+            input.set_value("");
+        }
+    };
+
     let handle_add = {
         let input_ref = input_ref.clone();
 
         let todos = todos.clone();
-        Callback::from(move |e: MouseEvent| {
-            if let Some(input) = input_ref.cast::<HtmlInputElement>() {
-                let value = input.value();
-
-                if value.trim().is_empty() {
-                    return;
-                }
-
-                let mut todos_state = todos.deref().clone();
-                todos_state.name = value.to_owned();
-                let todo = Todo::new(value.trim().to_owned());
-                todos_state.add(todo);
-                todos.set(todos_state);
-
-                input.set_value("");
-            }
+        Callback::from(move |_| {
+            add_todo(&todos, &input_ref);
         })
     };
 
@@ -129,21 +134,7 @@ pub fn todo_list() -> Html {
 
         Callback::from(move |e: KeyboardEvent| {
             if e.key().to_owned() == "Enter" {
-                if let Some(input) = input_ref.cast::<HtmlInputElement>() {
-                    let value = input.value();
-
-                    if value.trim().is_empty() {
-                        return;
-                    }
-
-                    let mut todos_state = todos.deref().clone();
-                    todos_state.name = value.to_owned();
-                    let todo = Todo::new(value.trim().to_owned());
-                    todos_state.add(todo);
-                    todos.set(todos_state);
-
-                    input.set_value("");
-                }
+                add_todo(&todos, &input_ref);
             }
         })
     };
@@ -220,18 +211,17 @@ impl Todo {
             editing: false,
         }
     }
-    ///
-    fn toggle_completed(&mut self) {
-        self.completed = !self.completed;
-    }
+    // fn toggle_completed(&mut self) {
+    //     self.completed = !self.completed;
+    // }
 
-    fn toggle_edit(&mut self) {
-        self.editing = !self.editing;
-    }
+    // fn toggle_edit(&mut self) {
+    //     self.editing = !self.editing;
+    // }
 
-    fn set_description(&mut self, description: String) {
-        self.description = description;
-    }
+    // fn set_description(&mut self, description: String) {
+    //     self.description = description;
+    // }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
