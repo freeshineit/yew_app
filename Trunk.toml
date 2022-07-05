@@ -62,13 +62,13 @@ backend = "http://localhost:9000/"
 [[proxy]]
 # This proxy specifies only the backend, which is the only required field. In this example,
 # request URIs are not modified when proxied.
-backend = "http://localhost:9000/api/v2/"
+backend = "https://yew.rs/tutorial"
 
 [[proxy]]
 # This proxy example has an insecure field. In this example,
 # connections to https://localhost:9000/api/v3/ will not have certificate validation performed.
 # This is useful for development with a server using self-signed certificates.
-backend = "https://localhost:9000/api/v3/"
+backend = "https://yew.rs/tutorial"
 insecure = true
 
 ## hooks
