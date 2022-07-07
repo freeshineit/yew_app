@@ -1,9 +1,7 @@
-use crate::Route;
 use reqwasm::http::Request;
 use serde::Deserialize;
 use stylist::style;
 use yew::prelude::*;
-use yew_router::prelude::*;
 
 #[derive(Debug, PartialEq, Deserialize)]
 struct Video {

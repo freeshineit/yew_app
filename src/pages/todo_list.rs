@@ -93,7 +93,7 @@ pub fn todo_list() -> Html {
 
     let input_ref = use_node_ref();
 
-    /// add button and `Enter` key world
+    // add button and `Enter` key world
     let add_todo = |todos: &UseStateHandle<Todos>, input_ref: &NodeRef| {
         if let Some(input) = input_ref.cast::<HtmlInputElement>() {
             let value = input.value();
