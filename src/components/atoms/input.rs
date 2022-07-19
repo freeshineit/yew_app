@@ -4,15 +4,17 @@ use yew::prelude::*;
 use stylist::style;
 
 #[derive(Properties, PartialEq, Clone)]
-pub struct ButtonProps {
+pub struct InputProps {
     pub class: Option<String>,
     pub placeholder: Option<String>,
     pub oninput: Option<Callback<InputEvent>>,
     pub onkeydown: Option<Callback<KeyboardEvent>>,
+    pub name: Option<String>,
+    pub input_type: Option<String>,
 }
 
 #[styled_component(Input)]
-pub fn input(props: &ButtonProps) -> Html {
+pub fn input(props: &InputProps) -> Html {
     let style = style!(
         r#"
             box-sizing: border-box;
@@ -50,8 +52,10 @@ pub fn input(props: &ButtonProps) -> Html {
         <input
             class={classes!(style, props.class.to_owned())}
             placeholder={props.placeholder.to_owned()}
+            name={props.name.to_owned()}
+            type={props.input_type.to_owned()}
             oninput={props.oninput.clone()}
             onkeydown={props.onkeydown.clone()}
-            />
+        />
     }
 }

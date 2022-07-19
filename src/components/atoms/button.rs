@@ -8,6 +8,7 @@ pub struct ButtonProps {
     pub class: Option<String>,
     pub children: Children,
     pub danger: Option<String>,
+    pub button_type: Option<String>,
     pub onclick: Option<Callback<MouseEvent>>,
 }
 
@@ -35,5 +36,12 @@ pub fn button(props: &ButtonProps) -> Html {
     )
     .expect("Failed to mount style!");
 
-    html! {<button class={classes!(style, props.class.to_owned())} onclick={props.onclick.clone()}>{props.children.clone()}</button>}
+    html! {
+        <button
+            class={classes!(style, props.class.to_owned())}
+            onclick={props.onclick.clone()}
+            type={props.button_type.to_owned()}>
+            {props.children.clone()}
+        </button>
+    }
 }
