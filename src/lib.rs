@@ -3,6 +3,7 @@ mod pages;
 mod utils;
 
 use pages::home::Home;
+use pages::login::Login;
 use pages::not_found::NotFound;
 use pages::todo_list::TodoList;
 use pages::videos::Videos;
@@ -16,6 +17,8 @@ use crate::components::atoms::layout::{Layout, LayoutFooter, LayoutHeader};
 pub enum Route {
     #[at("/")]
     Home,
+    #[at("/login")]
+    Login,
     #[at("/todo_list")]
     TodoList,
     #[at("/videos")]
@@ -34,6 +37,9 @@ pub fn switch(routes: &Route) -> Html {
             match routes {
               Route::Home => html! {
                 <Home />
+              },
+              Route::Login => html! {
+                <Login />
               },
               Route::TodoList => html! {
                 <TodoList />
