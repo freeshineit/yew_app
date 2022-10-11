@@ -21,6 +21,9 @@ cd dist && http-server -p 8000 .
 # docker nginx deploy
 # http://localhost:8000
 docker-compose up -d
+
+## github page deploy docs
+trunk build --release --public-url=/yew_app/
 ```
 
 
