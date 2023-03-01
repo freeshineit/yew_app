@@ -1,5 +1,6 @@
 ## yew app
 
+![build](https://github.com/freeshineit/yew_app/workflows/build/badge.svg)
 
 ### Use
 
