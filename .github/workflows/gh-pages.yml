@@ -9,7 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-    steps:
       - uses: actions/checkout@v3
       - run: node nojekyll.js
       - name: install toolchain
