@@ -1,14 +1,10 @@
-const rimraf = require("rimraf");
-const shell = require("shelljs");
 const path = require("path");
 const fs = require("fs");
 
 const start = async () => {
   try {
     await createDotNojekyll();
-  } catch (error) {
-    shell.exit(1);
-  }
+  } catch (error) {}
 };
 
 /**
