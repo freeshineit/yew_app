@@ -90,7 +90,7 @@ pub fn layout_header(props: &LayoutHeaderProps) -> Html {
             </ul>
             <div>
                 <a href="https://github.com/freeshineit" target="_block">
-                    <img src="https://freeshineit.github.io/static/images/ShineShao.jpg" alt="ShineShao" />
+                    <img src="https://avatars.githubusercontent.com/u/16034259?v=4" alt="ShineShao" />
                 </a>
             </div>
         </div>

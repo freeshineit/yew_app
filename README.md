@@ -11,7 +11,7 @@ brew install trunk
 
 # development
 # https://trunkrs.dev/
-trunk serve
+trunk serve --public-url /
 
 # release
 trunk build --release
@@ -24,7 +24,7 @@ cd dist && http-server -p 8000 .
 docker-compose up -d
 
 ## github page deploy docs
-trunk build --release --public-url=/yew_app/
+trunk build --release
 ```
 
 
