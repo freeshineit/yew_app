@@ -1,18 +1,18 @@
 use crate::Route;
-use stylist::style;
-use stylist::yew::styled_component;
-use yew::prelude::*;
+use stylist::yew::use_style;
+use yew::{classes, function_component, html, Html, Properties};
 use yew_router::prelude::*;
 
 #[derive(Properties, PartialEq, Clone)]
 pub struct LayoutProps {
+    #[prop_or_default]
     pub class: Option<String>,
-    pub children: Children,
+    pub children: Html,
 }
 
-#[styled_component(Layout)]
-pub fn layout(props: &LayoutProps) -> Html {
-    let style = style!(
+#[function_component]
+pub fn Layout(props: &LayoutProps) -> Html {
+    let style = use_style!(
         r#"
           display: flex;
           flex-direction: column;
@@ -22,14 +22,14 @@ pub fn layout(props: &LayoutProps) -> Html {
           padding-top: 60px;
           flex: 1 1 auto;
         "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     html! {<div class={classes!(style, props.class.to_owned())}>{ props.children.clone() }</div>}
 }
 
 #[derive(Properties, PartialEq, Clone)]
 pub struct LayoutHeaderProps {
+    #[prop_or_default]
     pub class: Option<String>,
 }
 
@@ -39,9 +39,9 @@ pub struct LayoutHeaderProps {
 ///
 ///
 ///
-#[styled_component(LayoutHeader)]
-pub fn layout_header(props: &LayoutHeaderProps) -> Html {
-    let style = style!(
+#[function_component]
+pub fn LayoutHeader(props: &LayoutHeaderProps) -> Html {
+    let style = use_style!(
         r#"
         display: flex;
         justify-content:space-between;
@@ -78,15 +78,14 @@ pub fn layout_header(props: &LayoutHeaderProps) -> Html {
             border-radius: 50%;
         }
       "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     html! {
         <div class={classes!(style, props.class.to_owned())}>
             <ul>
                 <li><Link<Route> to={Route::Home}>{"Home"}</Link<Route>></li>
-                <li><Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>></li>
-                <li><Link<Route> to={Route::Videos}>{"Videos"}</Link<Route>></li>
+                // <li><Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>></li>
+                // <li><Link<Route> to={Route::Videos}>{"Videos"}</Link<Route>></li>
             </ul>
             <div>
                 <a href="https://github.com/freeshineit" target="_block">
@@ -101,9 +100,9 @@ pub fn layout_header(props: &LayoutHeaderProps) -> Html {
 ///
 ///
 ///
-#[styled_component(LayoutFooter)]
-pub fn layout_footer(props: &LayoutHeaderProps) -> Html {
-    let style = style!(
+#[function_component]
+pub fn LayoutFooter(props: &LayoutHeaderProps) -> Html {
+    let style = use_style!(
         r#"
         display: flex;
         height: 60px;
@@ -117,8 +116,7 @@ pub fn layout_footer(props: &LayoutHeaderProps) -> Html {
             height: 22px;
         }
       "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     html! {
         <footer class={classes!(style, props.class.to_owned())}>

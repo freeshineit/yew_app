@@ -5,13 +5,13 @@ use crate::components::icons::delete::DeleteIcon;
 use gloo_console as console;
 use serde::{Deserialize, Serialize};
 use std::ops::Deref;
-use stylist::style;
+use stylist::yew::use_style;
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 #[function_component(TodoList)]
 pub fn todo_list() -> Html {
-    let style = style!(
+    let style = use_style!(
         r#"
           text-align: center;
           flex: 1 1 auto;
@@ -86,8 +86,7 @@ pub fn todo_list() -> Html {
             text-decoration:line-through;
           }
       "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     let todos = use_state(|| Todos::new());
 
@@ -163,7 +162,7 @@ pub fn todo_list() -> Html {
         <div class="center">
           <h1>{"Todo App"}</h1>
           <div class="flex">
-            <Input placeholder="What needs to be done?" oninput={handle_input} onkeydown={handle_key_down} ref={input_ref}/>
+            <Input placeholder="What needs to be done?" oninput={handle_input} onkeydown={handle_key_down} />
             <Button onclick={handle_add}>{"Add"}</Button>
           </div>
           <ul>

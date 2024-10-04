@@ -31,7 +31,7 @@ pub fn home() -> Html {
           <img src="/assets/logo.png"  />
           <div class="list">
             <Link<Route> to={Route::Home}>{"Home"}</Link<Route>>
-            <Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>>
+            // <Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>>
           </div>
       </div>
     }

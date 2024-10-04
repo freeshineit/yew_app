@@ -1,18 +1,17 @@
 use super::icon_wrapper::IconWrapper;
-// use stylist::style;
-// use stylist::yew::styled_component;
-use yew::prelude::*;
+use yew::{function_component, html, Classes, Html, Properties};
 
 #[derive(Properties, PartialEq, Clone)]
 pub struct CheckIconProps {
     pub checked: bool,
-    pub class: Option<String>,
+    #[prop_or_default]
+    pub class_name: Option<Classes>,
 }
 
-#[function_component(CheckIcon)]
-pub fn check_icon(props: &CheckIconProps) -> Html {
+#[function_component]
+pub fn CheckIcon(props: &CheckIconProps) -> Html {
     html! {
-        <IconWrapper class={props.class.to_owned()} name={"check"}>
+        <IconWrapper class_name={props.class_name.to_owned()} name={"check"}>
             <svg viewBox="0 0 1024 1024" version="1.1"  width="1em" height="1em" fill="currentColor" focusable="false">
                 {
                     if props.checked {

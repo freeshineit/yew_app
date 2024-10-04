@@ -1,15 +1,11 @@
-use crate::Route;
-use yew::prelude::*;
-use yew_router::prelude::*;
-
 use crate::components::atoms::button::Button;
 use crate::components::atoms::input::Input;
+use stylist::yew::use_style;
+use yew::{function_component, html, Html};
 
-use stylist::style;
-
-#[function_component(Login)]
-pub fn login() -> Html {
-    let style = style!(
+#[function_component]
+pub fn Login() -> Html {
+    let style = use_style!(
         r#"
         text-align: center;
         flex: 1 1 auto;
@@ -30,8 +26,7 @@ pub fn login() -> Html {
             width:100%;
         }
     "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     html! {
       <div class={style}>

@@ -1,20 +1,23 @@
-use stylist::yew::styled_component;
-use yew::prelude::*;
-
-use stylist::style;
+use stylist::yew::use_style;
+use yew::{classes, function_component, html, Callback, Html, MouseEvent, Properties};
 
 #[derive(Properties, PartialEq, Clone)]
 pub struct ButtonProps {
+    #[prop_or_default]
     pub class: Option<String>,
-    pub children: Children,
+    #[prop_or_default]
+    pub children: Html,
+    #[prop_or_default]
     pub danger: Option<String>,
+    #[prop_or_default]
     pub button_type: Option<String>,
+    #[prop_or_default]
     pub onclick: Option<Callback<MouseEvent>>,
 }
 
-#[styled_component(Button)]
-pub fn button(props: &ButtonProps) -> Html {
-    let style = style!(
+#[function_component]
+pub fn Button(props: &ButtonProps) -> Html {
+    let style = use_style!(
         r#"
             color: #fff;
             border-color: #1890ff;
@@ -33,8 +36,7 @@ pub fn button(props: &ButtonProps) -> Html {
             border: 1px solid transparent;
             text-align: center;
         "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     html! {
         <button

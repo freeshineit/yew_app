@@ -1,15 +1,16 @@
 use super::icon_wrapper::IconWrapper;
-use yew::prelude::*;
+use yew::{function_component, html, Classes, Html, Properties};
 
 #[derive(Properties, PartialEq, Clone)]
 pub struct DeleteIconProps {
-    pub class: Option<String>,
+    #[prop_or_default]
+    pub class_name: Option<Classes>,
 }
 
-#[function_component(DeleteIcon)]
-pub fn delete_icon(props: &DeleteIconProps) -> Html {
+#[function_component]
+pub fn DeleteIcon(props: &DeleteIconProps) -> Html {
     html! {
-        <IconWrapper class={props.class.to_owned()} name={"delete"}>
+        <IconWrapper class_name={&props.class_name} name={"delete".to_string()}>
             <svg viewBox="0 0 1024 1024"  width="1em" height="1em" fill="currentColor" focusable="false">
                 <path d="M768 384c-19.2 0-32 12.8-32 32l0 377.6c0 25.6-19.2 38.4-38.4 38.4L326.4 832c-25.6 0-38.4-19.2-38.4-38.4L288 416C288 396.8 275.2 384 256 384S224 396.8 224 416l0 377.6c0 57.6 44.8 102.4 102.4 102.4l364.8 0c57.6 0 102.4-44.8 102.4-102.4L793.6 416C800 396.8 787.2 384 768 384z" />
                 <path d="M460.8 736l0-320C460.8 396.8 448 384 435.2 384S396.8 396.8 396.8 416l0 320c0 19.2 12.8 32 32 32S460.8 755.2 460.8 736z" />
