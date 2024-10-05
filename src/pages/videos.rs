@@ -47,6 +47,7 @@ pub fn videos() -> Html {
                     .json()
                     .await
                     .unwrap();
+
                 videos.set(fetched_videos);
             });
         });
@@ -59,7 +60,7 @@ pub fn videos() -> Html {
             videos.iter().enumerate().map(|(idx, video)| {
               html! {
                 <li key={idx}>
-                    <a href={video.url.clone()} target="_block">{&*video.title}</a>
+                    <a href={video.url.clone()} target="_block">{&*video.title}  {"speaker:"} {&*video.speaker}</a>
                 </li>
               }
             }).collect::<Html>()

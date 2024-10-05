@@ -162,7 +162,7 @@ pub fn todo_list() -> Html {
         <div class="center">
           <h1>{"Todo App"}</h1>
           <div class="flex">
-            <Input placeholder="What needs to be done?" oninput={handle_input} onkeydown={handle_key_down} />
+            <Input placeholder="What needs to be done?" oninput={handle_input} onkeydown={handle_key_down} input_ref={input_ref}/>
             <Button onclick={handle_add}>{"Add"}</Button>
           </div>
           <ul>

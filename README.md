@@ -7,6 +7,7 @@
 ```bash
 
 # install trunk
+# trunk 0.20.3
 brew install trunk
 
 # development
@@ -31,6 +32,22 @@ trunk build --release
 
 ### Route
 
+```rs
+pub enum Route {
+    #[at("/")]
+    Home,
+    #[at("/login")]
+    Login,
+    #[at("/todo_list")]
+    TodoList,
+    #[at("/videos")]
+    Videos,
+    #[not_found]
+    #[at("/404")]
+    NotFound,
+}
+```
+[Route](./src/lib.rs)
 
 
 ### Todo List
