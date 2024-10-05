@@ -84,8 +84,8 @@ pub fn LayoutHeader(props: &LayoutHeaderProps) -> Html {
         <div class={classes!(style, props.class.to_owned())}>
             <ul>
                 <li><Link<Route> to={Route::Home}>{"Home"}</Link<Route>></li>
-                // <li><Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>></li>
-                // <li><Link<Route> to={Route::Videos}>{"Videos"}</Link<Route>></li>
+                <li><Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>></li>
+                <li><Link<Route> to={Route::Videos}>{"Videos"}</Link<Route>></li>
             </ul>
             <div>
                 <a href="https://github.com/freeshineit" target="_block">
