@@ -1,5 +1,5 @@
-use yew_app::App;
+use yew_app_lib::App;
 
 fn main() {
-    yew::start_app::<App>();
+    yew::Renderer::<App>::new().render();
 }

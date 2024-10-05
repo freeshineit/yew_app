@@ -1,9 +1,9 @@
 use reqwasm::http::Request;
 use serde::Deserialize;
-use stylist::style;
+use stylist::yew::use_style;
 use yew::prelude::*;
 
-#[derive(Debug, PartialEq, Deserialize)]
+#[derive(Debug, PartialEq, Deserialize, Properties)]
 struct Video {
     id: usize,
     title: String,
@@ -13,7 +13,7 @@ struct Video {
 
 #[function_component(Videos)]
 pub fn videos() -> Html {
-    let style = style!(
+    let style = use_style!(
         r#"
         text-align: center;
         flex: 1 1 auto;
@@ -31,29 +31,26 @@ pub fn videos() -> Html {
             line-height: 30px;
         }
     "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     let videos = use_state(|| vec![]);
     {
         let videos = videos.clone();
-        use_effect_with_deps(
-            move |_| {
-                let videos = videos.clone();
-                wasm_bindgen_futures::spawn_local(async move {
-                    let fetched_videos: Vec<Video> = Request::get("/tutorial/data.json")
-                        .send()
-                        .await
-                        .unwrap()
-                        .json()
-                        .await
-                        .unwrap();
-                    videos.set(fetched_videos);
-                });
-                || ()
-            },
-            (),
-        );
+
+        use_effect_with((), move |_| {
+            // let videos = videos.clone();
+            wasm_bindgen_futures::spawn_local(async move {
+                let fetched_videos: Vec<Video> = Request::get("/assets/videos.json")
+                    .send()
+                    .await
+                    .unwrap()
+                    .json()
+                    .await
+                    .unwrap();
+
+                videos.set(fetched_videos);
+            });
+        });
     }
 
     html! {
@@ -63,7 +60,7 @@ pub fn videos() -> Html {
             videos.iter().enumerate().map(|(idx, video)| {
               html! {
                 <li key={idx}>
-                    <a href={video.url.clone()} target="_block">{&*video.title}</a>
+                    <a href={video.url.clone()} target="_block">{&*video.title}  {"speaker:"} {&*video.speaker}</a>
                 </li>
               }
             }).collect::<Html>()

@@ -1,7 +1,10 @@
-use stylist::yew::styled_component;
-use yew::prelude::*;
+use stylist::yew::use_style;
+use yew::{function_component, html, Html};
 
-#[styled_component(CheckBox)]
-pub fn checkbox() -> Html {
-    html! {<checkbox class={css!("color: red;")}>{"Hello World!"}</checkbox>}
+#[function_component]
+
+pub fn CheckBox() -> Html {
+    let style = use_style!("color: red;");
+
+    html! {<checkbox class={style}>{"Hello World!"}</checkbox>}
 }

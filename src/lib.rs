@@ -34,7 +34,7 @@ pub enum Route {
     NotFound,
 }
 
-pub fn switch(routes: &Route) -> Html {
+pub fn switch(routes: Route) -> Html {
     html! {
      <Layout>
        <LayoutHeader />
@@ -62,11 +62,11 @@ pub fn switch(routes: &Route) -> Html {
     }
 }
 
-#[function_component(App)]
-pub fn app() -> Html {
+#[function_component]
+pub fn App() -> Html {
     html! {
         <BrowserRouter>
-            <Switch<Route> render={Switch::render(switch)} />
+            <Switch<Route> render={switch} />
         </BrowserRouter>
     }
 }

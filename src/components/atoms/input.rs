@@ -1,21 +1,31 @@
-use stylist::yew::styled_component;
-use yew::prelude::*;
-
-use stylist::style;
+use stylist::yew::use_style;
+use yew::{
+    classes, function_component, html, Callback, Html, InputEvent, KeyboardEvent, NodeRef,
+    Properties,
+};
 
 #[derive(Properties, PartialEq, Clone)]
 pub struct InputProps {
+    #[prop_or_default]
     pub class: Option<String>,
+    #[prop_or_default]
     pub placeholder: Option<String>,
+    #[prop_or_default]
     pub oninput: Option<Callback<InputEvent>>,
+    #[prop_or_default]
     pub onkeydown: Option<Callback<KeyboardEvent>>,
+    #[prop_or_default]
     pub name: Option<String>,
+    #[prop_or_default]
     pub input_type: Option<String>,
+    #[prop_or_default]
+    pub input_ref: NodeRef,
 }
 
-#[styled_component(Input)]
-pub fn input(props: &InputProps) -> Html {
-    let style = style!(
+#[function_component]
+
+pub fn Input(props: &InputProps) -> Html {
+    let style = use_style!(
         r#"
             box-sizing: border-box;
             margin: 0;
@@ -45,12 +55,12 @@ pub fn input(props: &InputProps) -> Html {
                 outline: 0;
             }
         "#
-    )
-    .expect("Failed to mount style!");
+    );
 
     html! {
         <input
             class={classes!(style, props.class.to_owned())}
+            ref={&props.input_ref}
             placeholder={props.placeholder.to_owned()}
             name={props.name.to_owned()}
             type={props.input_type.to_owned()}
