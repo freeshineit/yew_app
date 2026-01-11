@@ -117,6 +117,7 @@ pub fn LayoutHeader(props: &LayoutHeaderProps) -> Html {
                 <li><Link<Route> to={Route::Home}>{"Home"}</Link<Route>></li>
                 <li><Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>></li>
                 <li><Link<Route> to={Route::Videos}>{"Videos"}</Link<Route>></li>
+                <li><Link<Route> to={Route::Login}>{"Login"}</Link<Route>></li>
             </ul>
             <div class="avatar-link">
                 <a href="https://github.com/freeshineit" target="_blank">
