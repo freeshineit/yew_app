@@ -1,6 +1,8 @@
 ## yew app
 
-![build](https://github.com/freeshineit/yew_app/workflows/build/badge.svg)
+![MacOS Build](https://github.com/freeshineit/yew_app/workflows/macos-build/badge.svg)
+![Windows Build](https://github.com/freeshineit/yew_app/workflows/windows-build/badge.svg)
+![Ubuntu Build](https://github.com/freeshineit/yew_app/workflows/ubuntu-build/badge.svg)
 
 一个使用 Rust 和 Yew 框架构建的现代化 Web 应用。
 
