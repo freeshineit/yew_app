@@ -97,6 +97,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -111,17 +112,26 @@ nav,
 section {
   display: block;
 }
+
 body {
-  line-height: 1;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -129,6 +139,7 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -136,12 +147,33 @@ table {
 
 html,
 body {
-  background-color: #fff;
-  color: #000;
+  background-color: #fafafa;
+  color: #000000d9;
+}
+
+a {
+  color: #1890ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #40a9ff;
+}
+
+a:active {
+  color: #096dd9;
 }
 
 // --------------------------
 
 .flex {
   display: flex;
+}
+
+// 响应式断点
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
 }

@@ -1,7 +1,10 @@
 mod components;
 mod pages;
+mod state;
 mod utils;
 
+use crate::components::atoms::layout::{Layout, LayoutFooter, LayoutHeader};
+use crate::state::AppStateProvider;
 use pages::home::Home;
 use pages::login::Login;
 use pages::not_found::NotFound;
@@ -9,8 +12,6 @@ use pages::todo_list::TodoList;
 use pages::videos::Videos;
 use yew::prelude::*;
 use yew_router::prelude::*;
-
-use crate::components::atoms::layout::{Layout, LayoutFooter, LayoutHeader};
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -65,8 +66,10 @@ pub fn switch(routes: Route) -> Html {
 #[function_component]
 pub fn App() -> Html {
     html! {
-        <BrowserRouter>
-            <Switch<Route> render={switch} />
-        </BrowserRouter>
+        <AppStateProvider>
+            <BrowserRouter>
+                <Switch<Route> render={switch} />
+            </BrowserRouter>
+        </AppStateProvider>
     }
 }

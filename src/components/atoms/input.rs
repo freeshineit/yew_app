@@ -1,3 +1,4 @@
+use crate::utils::theme::Theme;
 use stylist::yew::use_style;
 use yew::{
     classes, function_component, html, Callback, Html, InputEvent, KeyboardEvent, NodeRef,
@@ -20,10 +21,11 @@ pub struct InputProps {
     pub input_type: Option<String>,
     #[prop_or_default]
     pub input_ref: NodeRef,
+    #[prop_or(false)]
+    pub disabled: bool,
 }
 
 #[function_component]
-
 pub fn Input(props: &InputProps) -> Html {
     let style = use_style!(
         r#"
@@ -34,27 +36,37 @@ pub fn Input(props: &InputProps) -> Html {
             display: inline-block;
             width: 100%;
             min-width: 0;
-            padding: 4px 11px;
-            color: #000000d9;
+            padding: 8px 12px;
+            color: ${text_color};
             font-size: 14px;
             line-height: 1.5715;
             background-color: #fff;
             background-image: none;
-            border: 1px solid #d9d9d9;
-            border-radius: 2px;
-            transition: all .3s;
+            border: 1px solid ${border_color};
+            border-radius: 4px;
+            transition: all 0.3s;
 
-            &:hover {
-                border-color: #40a9ff;
-                border-right-width: 1px;
+            &:hover:not(:disabled) {
+                border-color: ${primary_hover};
             }
+
             &:focus {
-                border-color: #40a9ff;
-                box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
-                border-right-width: 1px;
+                border-color: ${primary};
+                box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
                 outline: 0;
             }
-        "#
+
+            &:disabled {
+                background-color: ${bg_disabled};
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+        "#,
+        text_color = Theme::TEXT_PRIMARY,
+        border_color = Theme::BORDER,
+        primary = Theme::PRIMARY,
+        primary_hover = Theme::PRIMARY_HOVER,
+        bg_disabled = Theme::BG_SECONDARY
     );
 
     html! {
@@ -66,6 +78,7 @@ pub fn Input(props: &InputProps) -> Html {
             type={props.input_type.to_owned()}
             oninput={props.oninput.clone()}
             onkeydown={props.onkeydown.clone()}
+            disabled={props.disabled}
         />
     }
 }
