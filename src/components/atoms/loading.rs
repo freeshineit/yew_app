@@ -1,4 +1,4 @@
-use stylist::yew::use_style;
+use stylist::style;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Clone)]
@@ -11,7 +11,7 @@ pub struct LoadingProps {
 
 #[function_component]
 pub fn Loading(props: &LoadingProps) -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
         display: flex;
         flex-direction: column;
@@ -39,10 +39,10 @@ pub fn Loading(props: &LoadingProps) -> Html {
             font-size: 14px;
         }
         "#
-    );
+    ).expect("Failed to create style");
 
     html! {
-        <div class={classes!(style, props.class.clone())}>
+        <div class={classes!(style.get_class_name().to_string(), props.class.clone())}>
             <div class="spinner"></div>
             <div class="text">{&props.text}</div>
         </div>

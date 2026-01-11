@@ -1,5 +1,5 @@
 use crate::Route;
-use stylist::yew::use_style;
+use stylist::style;
 use yew::{classes, function_component, html, Html, Properties};
 use yew_router::prelude::*;
 
@@ -12,7 +12,7 @@ pub struct LayoutProps {
 
 #[function_component]
 pub fn Layout(props: &LayoutProps) -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
           display: flex;
           flex-direction: column;
@@ -22,9 +22,9 @@ pub fn Layout(props: &LayoutProps) -> Html {
           padding-top: 64px;
           flex: 1 1 auto;
         "#
-    );
+    ).expect("Failed to create style");
 
-    html! {<div class={classes!(style, props.class.to_owned())}>{ props.children.clone() }</div>}
+    html! {<div class={classes!(style.get_class_name().to_string(), props.class.to_owned())}>{ props.children.clone() }</div>}
 }
 
 #[derive(Properties, PartialEq, Clone)]
@@ -41,7 +41,7 @@ pub struct LayoutHeaderProps {
 ///
 #[function_component]
 pub fn LayoutHeader(props: &LayoutHeaderProps) -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
         display: flex;
         justify-content: space-between;
@@ -109,10 +109,10 @@ pub fn LayoutHeader(props: &LayoutHeaderProps) -> Html {
             }
         }
       "#
-    );
+    ).expect("Failed to create style");
 
     html! {
-        <div class={classes!(style, props.class.to_owned())}>
+        <div class={classes!(style.get_class_name().to_string(), props.class.to_owned())}>
             <ul>
                 <li><Link<Route> to={Route::Home}>{"Home"}</Link<Route>></li>
                 <li><Link<Route> to={Route::TodoList}>{"Todo List"}</Link<Route>></li>
@@ -133,7 +133,7 @@ pub fn LayoutHeader(props: &LayoutHeaderProps) -> Html {
 ///
 #[function_component]
 pub fn LayoutFooter(props: &LayoutHeaderProps) -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
         display: flex;
         height: 64px;
@@ -165,10 +165,10 @@ pub fn LayoutFooter(props: &LayoutHeaderProps) -> Html {
             font-size: 13px;
         }
       "#
-    );
+    ).expect("Failed to create style");
 
     html! {
-        <footer class={classes!(style, props.class.to_owned())}>
+        <footer class={classes!(style.get_class_name().to_string(), props.class.to_owned())}>
             <span>{"Built with ❤️ by"}</span>
             <a href="https://github.com/freeshineit" target="_blank">{"ShineShao"}</a>
             <span>{"|"}</span>

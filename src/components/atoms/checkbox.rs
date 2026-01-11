@@ -1,10 +1,10 @@
-use stylist::yew::use_style;
+use stylist::style;
 use yew::{function_component, html, Html};
 
 #[function_component]
 
 pub fn CheckBox() -> Html {
-    let style = use_style!("color: red;");
+    let style = style!("color: red;").expect("Failed to create style");
 
-    html! {<checkbox class={style}>{"Hello World!"}</checkbox>}
+    html! {<checkbox class={style.get_class_name().to_string()}>{"Hello World!"}</checkbox>}
 }

@@ -1,4 +1,4 @@
-use stylist::yew::use_style;
+use stylist::style;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq, Clone)]
@@ -10,7 +10,7 @@ pub struct ErrorMessageProps {
 
 #[function_component]
 pub fn ErrorMessage(props: &ErrorMessageProps) -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
         display: flex;
         flex-direction: column;
@@ -30,10 +30,10 @@ pub fn ErrorMessage(props: &ErrorMessageProps) -> Html {
             text-align: center;
         }
         "#
-    );
+    ).expect("Failed to create style");
 
     html! {
-        <div class={classes!(style, props.class.clone())}>
+        <div class={classes!(style.get_class_name().to_string(), props.class.clone())}>
             <div class="icon">{"⚠️"}</div>
             <div class="message">{&props.message}</div>
         </div>

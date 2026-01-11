@@ -6,13 +6,13 @@ use crate::utils::storage::LocalStorage;
 use gloo_console as console;
 use serde::{Deserialize, Serialize};
 use std::ops::Deref;
-use stylist::yew::use_style;
+use stylist::style;
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 #[function_component(TodoList)]
 pub fn todo_list() -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
           text-align: center;
           flex: 1 1 auto;
@@ -143,7 +143,7 @@ pub fn todo_list() -> Html {
             }
           }
       "#
-    );
+    ).expect("Failed to create style");
 
     let todos = use_state(|| {
         // 从 localStorage 加载 todos
@@ -234,7 +234,7 @@ pub fn todo_list() -> Html {
     };
 
     html! {
-      <div class={style}>
+      <div class={style.get_class_name().to_string()}>
         <div class="center">
           <h1>{"Todo App"}</h1>
           <div class="input-group">

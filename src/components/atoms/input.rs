@@ -1,5 +1,5 @@
 use crate::utils::theme::Theme;
-use stylist::yew::use_style;
+use stylist::style;
 use yew::{
     classes, function_component, html, Callback, Html, InputEvent, KeyboardEvent, NodeRef,
     Properties,
@@ -27,7 +27,7 @@ pub struct InputProps {
 
 #[function_component]
 pub fn Input(props: &InputProps) -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
             box-sizing: border-box;
             margin: 0;
@@ -67,11 +67,11 @@ pub fn Input(props: &InputProps) -> Html {
         primary = Theme::PRIMARY,
         primary_hover = Theme::PRIMARY_HOVER,
         bg_disabled = Theme::BG_SECONDARY
-    );
+    ).expect("Failed to create style");
 
     html! {
         <input
-            class={classes!(style, props.class.to_owned())}
+            class={classes!(style.get_class_name().to_string(), props.class.to_owned())}
             ref={&props.input_ref}
             placeholder={props.placeholder.to_owned()}
             name={props.name.to_owned()}

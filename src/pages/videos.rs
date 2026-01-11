@@ -2,7 +2,7 @@ use crate::components::atoms::error::ErrorMessage;
 use crate::components::atoms::loading::Loading;
 use reqwasm::http::Request;
 use serde::Deserialize;
-use stylist::yew::use_style;
+use stylist::style;
 use yew::prelude::*;
 
 #[derive(Debug, PartialEq, Deserialize, Properties)]
@@ -15,7 +15,7 @@ struct Video {
 
 #[function_component(Videos)]
 pub fn videos() -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
         text-align: center;
         flex: 1 1 auto;
@@ -79,7 +79,7 @@ pub fn videos() -> Html {
             }
         }
     "#
-    );
+    ).expect("Failed to create style");
 
     let videos = use_state(|| vec![]);
     let loading = use_state(|| true);
@@ -113,7 +113,7 @@ pub fn videos() -> Html {
     }
 
     html! {
-      <div class={style}>
+      <div class={style.get_class_name().to_string()}>
         <h1>{"Video Collection"}</h1>
         {
             if *loading {

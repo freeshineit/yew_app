@@ -1,5 +1,5 @@
 use crate::utils::theme::Theme;
-use stylist::yew::use_style;
+use stylist::style;
 use yew::{classes, function_component, html, Callback, Html, MouseEvent, Properties};
 
 #[derive(Properties, PartialEq, Clone)]
@@ -32,7 +32,7 @@ pub fn Button(props: &ButtonProps) -> Html {
         Theme::PRIMARY_HOVER
     };
 
-    let style = use_style!(
+    let style = style!(
         r#"
             color: #fff;
             border-color: ${bg_color};
@@ -70,11 +70,11 @@ pub fn Button(props: &ButtonProps) -> Html {
         "#,
         bg_color = bg_color,
         hover_color = hover_color
-    );
+    ).expect("Failed to create style");
 
     html! {
         <button
-            class={classes!(style, props.class.to_owned())}
+            class={classes!(style.get_class_name().to_string(), props.class.to_owned())}
             onclick={props.onclick.clone()}
             type={props.button_type.to_owned()}
             disabled={props.disabled}>
