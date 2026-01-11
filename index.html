@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yew App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <link rel="stylesheet" href="./index-4819f18fbe6a3f40.css" integrity="sha384-wNLCzzaSbTONpCtXtHL9Td9lrEkG1c2+3AEkTML4uiiYnt3HsQww0hpGSeBVGUeJ"/>
+  
+<script type="module">
+import init, * as bindings from './yew_app-473bcb0bef49f6d8.js';
+const wasm = await init({ module_or_path: './yew_app-473bcb0bef49f6d8_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <base href="./" />
+
+<link rel="modulepreload" href="./yew_app-473bcb0bef49f6d8.js" crossorigin="anonymous" integrity="sha384-jFQVf6cPACHysdf3kNNXyAM7FW42FYeAjEDeb+F62W6Rm8WgKMAXLr750iu4k6my"><link rel="preload" href="./yew_app-473bcb0bef49f6d8_bg.wasm" crossorigin="anonymous" integrity="sha384-KlG2cg0AsKGk/TpnlnEVSAfjq78ZhwGj/c4bnsn1tJhImjo/vF1pGjNJqhaD2T99" as="fetch" type="application/wasm"></head>
+
+<body>
+</body>
+
+</html>
