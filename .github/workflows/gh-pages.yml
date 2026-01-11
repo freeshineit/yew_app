@@ -31,7 +31,7 @@ jobs:
         with:
           version: "latest"
       - name: Build
-        run: trunk build --release
+        run: trunk build --public-url ./ --release
 
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
