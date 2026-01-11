@@ -1,0 +1,41 @@
+name: github pages
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: install toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          override: true
+          profile: minimal
+      - name: Install trunk
+        uses: jetli/trunk-action@v0.5.1
+        with:
+          version: "latest"
+      - name: Build
+        run: trunk build --release
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ./dist
+          token: ${{ secrets.PAGE_GITHUB_TOKEN }}
