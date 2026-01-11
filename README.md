@@ -86,8 +86,8 @@ pub enum Route {
 
 ### 🔧 技术栈
 
-- **Yew** 0.21.0 - Rust Web 框架
-- **Yew Router** 0.18.0 - 路由管理
+- **Yew** 0.22.0 - Rust Web 框架
+- **Yew Router** 0.19.0 - 路由管理
 - **Stylist** 0.13.0 - CSS-in-Rust 样式方案
 - **Serde** 1.0.210 - 序列化/反序列化
 - **Reqwasm** 0.5.0 - HTTP 请求
