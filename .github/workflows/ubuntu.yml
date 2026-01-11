@@ -1,0 +1,32 @@
+name: ubuntu-build
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+    branches: [main, develop]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: install toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          override: true
+          profile: minimal
+      - name: Install trunk
+        uses: jetli/trunk-action@v0.5.1
+        with:
+          version: "latest"
+      - name: Build
+        run: trunk build --release
+      # - name: Run tests
+      #   run: cargo test --verbose

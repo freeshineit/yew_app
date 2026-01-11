@@ -1,4 +1,4 @@
-name: build
+name: macos-build
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
           override: true
           profile: minimal
       - name: Install trunk
-        uses: jetli/trunk-action@v0.5.0
+        uses: jetli/trunk-action@v0.5.1
         with:
           version: "latest"
       - name: Build
