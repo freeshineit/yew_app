@@ -4,6 +4,57 @@
   box-sizing: border-box;
 }
 
+/* CSS 变量定义 - 默认主题 */
+:root {
+  /* 主色调 */
+  --color-primary: #1890ff;
+  --color-primary-hover: #40a9ff;
+  --color-primary-active: #096dd9;
+  
+  /* 成功色 */
+  --color-success: #52c41a;
+  --color-success-hover: #73d13d;
+  
+  /* 警告色 */
+  --color-warning: #faad14;
+  --color-warning-hover: #ffc53d;
+  
+  /* 错误色 */
+  --color-error: #ff4d4f;
+  --color-error-hover: #ff7875;
+  
+  /* 文本颜色 */
+  --color-text-primary: #000000d9;
+  --color-text-secondary: #00000073;
+  --color-text-disabled: #00000040;
+  
+  /* 边框颜色 */
+  --color-border: #d9d9d9;
+  --color-border-light: #f0f0f0;
+  
+  /* 背景颜色 */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #fafafa;
+  --color-bg-hover: #f5f5f5;
+  
+  /* 阴影 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+  
+  /* 圆角 */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  
+  /* 间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -120,6 +171,7 @@ body {
     'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 ol,
@@ -147,22 +199,22 @@ table {
 
 html,
 body {
-  background-color: #fafafa;
-  color: #000000d9;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
 }
 
 a {
-  color: #1890ff;
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.3s;
 }
 
 a:hover {
-  color: #40a9ff;
+  color: var(--color-primary-hover);
 }
 
 a:active {
-  color: #096dd9;
+  color: var(--color-primary-active);
 }
 
 // --------------------------

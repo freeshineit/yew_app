@@ -20,19 +20,20 @@ pub fn CheckBox(props: &CheckBoxProps) -> Html {
             width: 32px;
             height: 32px;
             cursor: pointer;
-            padding: 6px;
+            padding: var(--spacing-xs);
             justify-content: center;
             align-items: center;
             font-size: 20px;
-            border-radius: 4px;
+            border-radius: var(--radius-md);
             transition: all 0.2s;
+            color: var(--color-text-secondary);
 
             &:hover {
-                background-color: #f0f0f0;
+                background-color: var(--color-bg-hover);
             }
 
             &.checked {
-                color: #52c41a;
+                color: var(--color-primary);
             }
         "#
     )

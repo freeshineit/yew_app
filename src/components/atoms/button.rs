@@ -1,4 +1,3 @@
-use crate::utils::theme::Theme;
 use stylist::style;
 use yew::{classes, function_component, html, Callback, Html, MouseEvent, Properties};
 
@@ -20,16 +19,10 @@ pub struct ButtonProps {
 
 #[function_component]
 pub fn Button(props: &ButtonProps) -> Html {
-    let bg_color = if props.danger {
-        Theme::ERROR
+    let (bg_var, hover_var) = if props.danger {
+        ("var(--color-error)", "var(--color-error-hover)")
     } else {
-        Theme::PRIMARY
-    };
-
-    let hover_color = if props.danger {
-        Theme::ERROR_HOVER
-    } else {
-        Theme::PRIMARY_HOVER
+        ("var(--color-primary)", "var(--color-primary-hover)")
     };
 
     let style = style!(
@@ -46,7 +39,7 @@ pub fn Button(props: &ButtonProps) -> Html {
             height: 40px;
             padding: 8px 20px;
             font-size: 14px;
-            border-radius: 4px;
+            border-radius: var(--radius-md);
             cursor: pointer;
             border: 1px solid transparent;
             text-align: center;
@@ -68,8 +61,8 @@ pub fn Button(props: &ButtonProps) -> Html {
                 cursor: not-allowed;
             }
         "#,
-        bg_color = bg_color,
-        hover_color = hover_color
+        bg_color = bg_var,
+        hover_color = hover_var
     ).expect("Failed to create style");
 
     html! {

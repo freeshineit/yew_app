@@ -21,7 +21,10 @@ stylist = { version = "0.13.0", features = [
     "yew_integration",
     "yew_use_style",
 ] }
-web-sys = "0.3.70"
+web-sys = {version ="0.3.70", features = [
+  "HtmlElement",
+  "CssStyleDeclaration"
+]}
 gloo-console = "0.3.0"
 reqwasm = '0.5.0'
 wasm-bindgen-futures = "0.4"

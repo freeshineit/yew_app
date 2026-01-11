@@ -1,4 +1,3 @@
-use crate::utils::theme::Theme;
 use stylist::style;
 use yew::{
     classes, function_component, html, Callback, Html, InputEvent, KeyboardEvent, NodeRef,
@@ -36,37 +35,32 @@ pub fn Input(props: &InputProps) -> Html {
             display: inline-block;
             width: 100%;
             min-width: 0;
-            padding: 8px 12px;
-            color: ${text_color};
+            padding: var(--spacing-sm) var(--spacing-md);
+            color: var(--color-text-primary);
             font-size: 14px;
             line-height: 1.5715;
-            background-color: #fff;
+            background-color: var(--color-bg-primary);
             background-image: none;
-            border: 1px solid ${border_color};
-            border-radius: 4px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
             transition: all 0.3s;
 
             &:hover:not(:disabled) {
-                border-color: ${primary_hover};
+                border-color: var(--color-primary-hover);
             }
 
             &:focus {
-                border-color: ${primary};
+                border-color: var(--color-primary);
                 box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
                 outline: 0;
             }
 
             &:disabled {
-                background-color: ${bg_disabled};
+                background-color: var(--color-bg-secondary);
                 cursor: not-allowed;
                 opacity: 0.6;
             }
-        "#,
-        text_color = Theme::TEXT_PRIMARY,
-        border_color = Theme::BORDER,
-        primary = Theme::PRIMARY,
-        primary_hover = Theme::PRIMARY_HOVER,
-        bg_disabled = Theme::BG_SECONDARY
+        "#
     ).expect("Failed to create style");
 
     html! {
