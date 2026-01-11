@@ -30,8 +30,8 @@ pub enum Route {
     TodoList,
     #[at("/videos")]
     Videos,
-    #[not_found]
-    #[at("/404")]
+    #[not_found] 
+    #[at("/404")] // not_found
     NotFound,
 }
 
