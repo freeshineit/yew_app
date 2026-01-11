@@ -96,7 +96,7 @@ pub fn home() -> Html {
     .expect("Failed to mount style!");
 
     html! {
-      <div class={style}>
+      <div class={style.get_class_name().to_string()}>
         <div class="content">
           <img src="./assets/logo.png" alt="Yew Logo" />
           <h1>{"Welcome to Yew App"}</h1>

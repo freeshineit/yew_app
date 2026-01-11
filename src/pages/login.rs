@@ -1,14 +1,14 @@
 use crate::components::atoms::button::Button;
 use crate::components::atoms::input::Input;
 use crate::Route;
-use stylist::yew::use_style;
+use stylist::style;
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
 #[function_component]
 pub fn Login() -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
         text-align: center;
         flex: 1 1 auto;
@@ -76,7 +76,7 @@ pub fn Login() -> Html {
             }
         }
     "#
-    );
+    ).expect("Failed to create style");
 
     let username_ref = use_node_ref();
     let password_ref = use_node_ref();
@@ -106,7 +106,7 @@ pub fn Login() -> Html {
     };
 
     html! {
-        <div class={style}>
+        <div class={style.get_class_name().to_string()}>
             <div class="login-container">
                 <img src="./assets/logo.png" alt="Logo" />
                 <h1>{"Welcome Back"}</h1>

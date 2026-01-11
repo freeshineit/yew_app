@@ -1,6 +1,6 @@
 [package]
 name = "yew_app"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["ShineShao <xiaoshaoqq@gmail.com>"]
 
@@ -13,15 +13,18 @@ name = "yew_app_lib"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-yew-router = "0.18.0"
-yew = { version = "0.21.0", features = ["csr"] }
+yew-router = "0.19.0"
+yew = { version = "0.22.0", features = ["csr"] }
 serde = { version = "1.0.210", features = ["derive"] }
 serde_json = "1.0.128"
 stylist = { version = "0.13.0", features = [
     "yew_integration",
     "yew_use_style",
 ] }
-web-sys = "0.3.70"
+web-sys = {version ="0.3.70", features = [
+  "HtmlElement",
+  "CssStyleDeclaration"
+]}
 gloo-console = "0.3.0"
 reqwasm = '0.5.0'
 wasm-bindgen-futures = "0.4"

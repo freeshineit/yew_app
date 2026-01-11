@@ -1,11 +1,11 @@
 use crate::Route;
-use stylist::yew::use_style;
+use stylist::style;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
 #[function_component(NotFound)]
 pub fn not_found() -> Html {
-    let style = use_style!(
+    let style = style!(
         r#"
         flex: 1 1 auto;
         display: flex;
@@ -62,10 +62,10 @@ pub fn not_found() -> Html {
             }
         }
         "#
-    );
+    ).expect("Failed to create style");
 
     html! {
-        <div class={style}>
+        <div class={style.get_class_name().to_string()}>
             <div class="error-code">{"404"}</div>
             <h1>{"Page Not Found"}</h1>
             <p>{"Sorry, the page you are looking for does not exist."}</p>

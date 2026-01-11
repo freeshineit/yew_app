@@ -19,14 +19,14 @@
 ### 🚀 快速开始
 
 ```bash
-# 安装 trunk (版本 0.20.3)
+# 安装 trunk (版本 0.21.x)
 brew install trunk
 
 # 开发模式
 trunk serve --public-url ./
 
 # 生产构建
-trunk build --release
+trunk build --release --public-url ./
 
 # 使用 http-server 预览
 cd dist && http-server -p 8000 .
@@ -36,8 +36,7 @@ cd dist && http-server -p 8000 .
 docker-compose up -d
 
 # GitHub Pages 部署
-
-trunk build --public-url ./ --release
+trunk build --release --public-url ./
 ```
 
 ### 📁 项目结构
@@ -87,8 +86,8 @@ pub enum Route {
 
 ### 🔧 技术栈
 
-- **Yew** 0.21.0 - Rust Web 框架
-- **Yew Router** 0.18.0 - 路由管理
+- **Yew** 0.22.0 - Rust Web 框架
+- **Yew Router** 0.19.0 - 路由管理
 - **Stylist** 0.13.0 - CSS-in-Rust 样式方案
 - **Serde** 1.0.210 - 序列化/反序列化
 - **Reqwasm** 0.5.0 - HTTP 请求

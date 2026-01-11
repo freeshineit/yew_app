@@ -1,5 +1,4 @@
-use crate::utils::theme::Theme;
-use stylist::yew::use_style;
+use stylist::style;
 use yew::{classes, function_component, html, Callback, Html, MouseEvent, Properties};
 
 #[derive(Properties, PartialEq, Clone)]
@@ -20,19 +19,13 @@ pub struct ButtonProps {
 
 #[function_component]
 pub fn Button(props: &ButtonProps) -> Html {
-    let bg_color = if props.danger {
-        Theme::ERROR
+    let (bg_var, hover_var) = if props.danger {
+        ("var(--color-error)", "var(--color-error-hover)")
     } else {
-        Theme::PRIMARY
+        ("var(--color-primary)", "var(--color-primary-hover)")
     };
 
-    let hover_color = if props.danger {
-        Theme::ERROR_HOVER
-    } else {
-        Theme::PRIMARY_HOVER
-    };
-
-    let style = use_style!(
+    let style = style!(
         r#"
             color: #fff;
             border-color: ${bg_color};
@@ -46,7 +39,7 @@ pub fn Button(props: &ButtonProps) -> Html {
             height: 40px;
             padding: 8px 20px;
             font-size: 14px;
-            border-radius: 4px;
+            border-radius: var(--radius-md);
             cursor: pointer;
             border: 1px solid transparent;
             text-align: center;
@@ -68,13 +61,13 @@ pub fn Button(props: &ButtonProps) -> Html {
                 cursor: not-allowed;
             }
         "#,
-        bg_color = bg_color,
-        hover_color = hover_color
-    );
+        bg_color = bg_var,
+        hover_color = hover_var
+    ).expect("Failed to create style");
 
     html! {
         <button
-            class={classes!(style, props.class.to_owned())}
+            class={classes!(style.get_class_name().to_string(), props.class.to_owned())}
             onclick={props.onclick.clone()}
             type={props.button_type.to_owned()}
             disabled={props.disabled}>
