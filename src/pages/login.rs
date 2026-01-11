@@ -108,7 +108,7 @@ pub fn Login() -> Html {
     html! {
         <div class={style}>
             <div class="login-container">
-                <img src="/assets/logo.png" alt="Logo" />
+                <img src="./assets/logo.png" alt="Logo" />
                 <h1>{"Welcome Back"}</h1>
                 <form onsubmit={handle_submit}>
                     <div class="form-item">
