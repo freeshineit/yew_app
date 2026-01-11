@@ -39,7 +39,8 @@ pub fn Loading(props: &LoadingProps) -> Html {
             font-size: 14px;
         }
         "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     html! {
         <div class={classes!(style.get_class_name().to_string(), props.class.clone())}>

@@ -2,7 +2,9 @@ use crate::utils::storage::LocalStorage;
 use crate::utils::theme::{CustomTheme, ThemeType};
 use crate::Route;
 use stylist::style;
-use yew::{Callback, Html, Properties, classes, function_component, html, use_effect_with, use_state};
+use yew::{
+    classes, function_component, html, use_effect_with, use_state, Callback, Html, Properties,
+};
 use yew_router::prelude::*;
 
 #[derive(Properties, PartialEq, Clone)]
@@ -24,7 +26,8 @@ pub fn Layout(props: &LayoutProps) -> Html {
           padding-top: 64px;
           flex: 1 1 auto;
         "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     html! {<div class={classes!(style.get_class_name().to_string(), props.class.to_owned())}>{ props.children.clone() }</div>}
 }
@@ -169,7 +172,8 @@ pub fn LayoutHeader(props: &LayoutHeaderProps) -> Html {
             }
         }
       "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     // 从 localStorage 加载主题，默认为 Default
     let current_theme = use_state(|| {
@@ -284,7 +288,8 @@ pub fn LayoutFooter(props: &LayoutHeaderProps) -> Html {
             font-size: 13px;
         }
       "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     html! {
         <footer class={classes!(style.get_class_name().to_string(), props.class.to_owned())}>

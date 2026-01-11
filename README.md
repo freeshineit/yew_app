@@ -37,6 +37,18 @@ docker-compose up -d
 
 # GitHub Pages 部署
 trunk build --release --public-url ./
+
+# 格式化代码
+make fmt
+
+# 检查格式
+make fmt-check
+
+# 代码质量检查
+make lint
+
+# 完整检查
+make check
 ```
 
 ### 📁 项目结构

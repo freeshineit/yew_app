@@ -1,0 +1,66 @@
+# Rust 格式化配置文件
+# 使用 `cargo fmt` 命令格式化代码
+# 注意：此配置仅包含稳定版 rustfmt 支持的选项
+
+# Rust 版本
+edition = "2021"
+
+# 最大行宽
+max_width = 100
+
+# 硬标签宽度
+hard_tabs = false
+tab_spaces = 4
+
+# 换行风格
+newline_style = "Unix"
+
+# 使用字段初始化简写
+use_field_init_shorthand = true
+
+# 使用 try 简写 (?)
+use_try_shorthand = true
+
+# 导入语句排序
+reorder_imports = true
+
+# 删除嵌套的括号
+remove_nested_parens = true
+
+# 空格设置
+
+# ===== 以下是 nightly 版本才支持的选项 =====
+# 如果你使用 nightly 版本，可以取消注释这些选项
+# 使用方法: cargo +nightly fmt
+
+# 格式化文档注释中的代码
+# format_code_in_doc_comments = true
+
+# 注释换行
+# wrap_comments = true
+# comment_width = 100
+# normalize_comments = true
+# normalize_doc_attributes = true
+
+# 格式化字符串
+# format_strings = true
+
+# 导入语句分组
+# group_imports = "StdExternalCrate"
+# imports_granularity = "Module"
+
+# 重排序 impl 项
+# reorder_impl_items = true
+
+# 简化通配符后缀
+# condense_wildcard_suffixes = true
+
+# 格式化宏
+# format_macro_matchers = true
+# format_macro_bodies = true
+
+# 控制流
+# control_brace_style = "AlwaysSameLine"
+
+# 匹配表达式
+# match_arm_leading_pipes = "Never"

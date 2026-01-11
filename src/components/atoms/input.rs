@@ -61,7 +61,8 @@ pub fn Input(props: &InputProps) -> Html {
                 opacity: 0.6;
             }
         "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     html! {
         <input

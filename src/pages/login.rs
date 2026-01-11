@@ -76,7 +76,8 @@ pub fn Login() -> Html {
             }
         }
     "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     let username_ref = use_node_ref();
     let password_ref = use_node_ref();
@@ -85,17 +86,17 @@ pub fn Login() -> Html {
     let handle_submit = {
         let username_ref = username_ref.clone();
         let password_ref = password_ref.clone();
-        
+
         Callback::from(move |e: SubmitEvent| {
             e.prevent_default();
-            
+
             if let (Some(username_input), Some(password_input)) = (
                 username_ref.cast::<HtmlInputElement>(),
                 password_ref.cast::<HtmlInputElement>(),
             ) {
                 let username = username_input.value();
                 let password = password_input.value();
-                
+
                 // 简单的演示逻辑
                 if !username.is_empty() && !password.is_empty() {
                     // 这里可以添加实际的登录逻辑
@@ -113,17 +114,17 @@ pub fn Login() -> Html {
                 <form onsubmit={handle_submit}>
                     <div class="form-item">
                         <label>{"Username"}</label>
-                        <Input 
-                            name="username" 
+                        <Input
+                            name="username"
                             placeholder="Enter your username"
                             input_ref={username_ref}
                         />
                     </div>
                     <div class="form-item">
                         <label>{"Password"}</label>
-                        <Input 
-                            name="password" 
-                            input_type="password" 
+                        <Input
+                            name="password"
+                            input_type="password"
                             placeholder="Enter your password"
                             input_ref={password_ref}
                         />

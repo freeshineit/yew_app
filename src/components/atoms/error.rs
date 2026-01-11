@@ -30,7 +30,8 @@ pub fn ErrorMessage(props: &ErrorMessageProps) -> Html {
             text-align: center;
         }
         "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     html! {
         <div class={classes!(style.get_class_name().to_string(), props.class.clone())}>

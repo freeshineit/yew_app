@@ -1,0 +1,85 @@
+# Rust 格式化配置文件 (Nightly 版本)
+# 使用 `cargo +nightly fmt` 命令格式化代码
+# 此配置包含所有高级格式化选项
+
+# Rust 版本
+edition = "2021"
+
+# 最大行宽
+max_width = 100
+
+# 硬标签宽度
+hard_tabs = false
+tab_spaces = 4
+
+# 换行风格
+newline_style = "Unix"
+
+# 使用字段初始化简写
+use_field_init_shorthand = true
+
+# 使用 try 简写 (?)
+use_try_shorthand = true
+
+# 格式化文档注释中的代码
+format_code_in_doc_comments = true
+
+# 格式化字符串
+format_strings = true
+
+# 格式化宏定义
+format_macro_matchers = true
+format_macro_bodies = true
+
+# 导入语句
+imports_granularity = "Module"
+group_imports = "StdExternalCrate"
+reorder_imports = true
+
+# 重排序 impl 项
+reorder_impl_items = true
+
+# 简化通配符后缀
+condense_wildcard_suffixes = true
+
+# 函数调用
+fn_call_width = 80
+
+# 结构体
+struct_lit_width = 80
+
+# 数组
+array_width = 80
+
+# 链式调用
+chain_width = 80
+
+# 注释
+comment_width = 100
+wrap_comments = true
+normalize_comments = true
+normalize_doc_attributes = true
+
+# 控制流
+control_brace_style = "AlwaysSameLine"
+
+# 空行
+blank_lines_upper_bound = 2
+blank_lines_lower_bound = 0
+
+# 匹配表达式
+match_arm_leading_pipes = "Never"
+
+# 溢出分隔符
+overflow_delimited_expr = true
+
+# 删除嵌套的括号
+remove_nested_parens = true
+
+# 空格
+space_after_colon = true
+space_before_colon = false
+spaces_around_ranges = false
+
+# Where 子句
+where_single_line = false

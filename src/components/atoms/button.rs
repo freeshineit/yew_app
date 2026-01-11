@@ -63,7 +63,8 @@ pub fn Button(props: &ButtonProps) -> Html {
         "#,
         bg_color = bg_var,
         hover_color = hover_var
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     html! {
         <button

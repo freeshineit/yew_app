@@ -62,7 +62,8 @@ pub fn not_found() -> Html {
             }
         }
         "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     html! {
         <div class={style.get_class_name().to_string()}>

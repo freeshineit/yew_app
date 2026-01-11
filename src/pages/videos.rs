@@ -79,12 +79,13 @@ pub fn videos() -> Html {
             }
         }
     "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     let videos = use_state(|| vec![]);
     let loading = use_state(|| true);
     let error = use_state(|| None::<String>);
-    
+
     {
         let videos = videos.clone();
         let loading = loading.clone();

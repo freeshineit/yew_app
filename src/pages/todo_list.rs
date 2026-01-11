@@ -135,7 +135,8 @@ pub fn todo_list() -> Html {
             }
           }
       "#
-    ).expect("Failed to create style");
+    )
+    .expect("Failed to create style");
 
     let todos = use_state(|| {
         // 从 localStorage 加载 todos
