@@ -33,6 +33,9 @@ jobs:
       - name: Build
         run: trunk build --public-url ./ --release
 
+      - name: Copy nojekyll to dist
+        run: cp .nojekyll dist/.nojekyll
+
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
