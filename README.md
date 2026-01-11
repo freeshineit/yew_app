@@ -23,7 +23,7 @@
 brew install trunk
 
 # 开发模式
-trunk serve --public-url /
+trunk serve --public-url ./
 
 # 生产构建
 trunk build --release
@@ -36,7 +36,8 @@ cd dist && http-server -p 8000 .
 docker-compose up -d
 
 # GitHub Pages 部署
-trunk build --release
+
+trunk build --public-url ./ --release
 ```
 
 ### 📁 项目结构
