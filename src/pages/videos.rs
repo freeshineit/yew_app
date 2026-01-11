@@ -92,7 +92,7 @@ pub fn videos() -> Html {
 
         use_effect_with((), move |_| {
             wasm_bindgen_futures::spawn_local(async move {
-                match Request::get("/assets/videos.json").send().await {
+                match Request::get("./assets/videos.json").send().await {
                     Ok(response) => match response.json::<Vec<Video>>().await {
                         Ok(fetched_videos) => {
                             videos.set(fetched_videos);

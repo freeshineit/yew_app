@@ -98,7 +98,7 @@ pub fn home() -> Html {
     html! {
       <div class={style}>
         <div class="content">
-          <img src="/assets/logo.png" alt="Yew Logo" />
+          <img src="./assets/logo.png" alt="Yew Logo" />
           <h1>{"Welcome to Yew App"}</h1>
           <p class="subtitle">{"A modern web application built with Rust and Yew"}</p>
           <div class="nav-links">
