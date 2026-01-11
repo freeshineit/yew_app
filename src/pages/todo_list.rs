@@ -1,6 +1,6 @@
 use crate::components::atoms::button::Button;
+use crate::components::atoms::checkbox::CheckBox;
 use crate::components::atoms::input::Input;
-use crate::components::icons::check::CheckIcon;
 use crate::components::icons::delete::DeleteIcon;
 use crate::utils::storage::LocalStorage;
 use gloo_console as console;
@@ -90,7 +90,7 @@ pub fn todo_list() -> Html {
             line-height: 1.5;
           }
 
-          .check-btn, .delete-btn {
+          .delete-btn {
             display: inline-flex;
             width: 32px;
             height: 32px;
@@ -103,20 +103,12 @@ pub fn todo_list() -> Html {
             transition: all 0.2s;
           }
 
-          .check-btn:hover {
-            background-color: #f0f0f0;
-          }
-
           .delete-btn {
             color: #ff4d4f;
           }
 
           .delete-btn:hover {
             background-color: #fff1f0;
-          }
-
-          .completed .check-btn {
-            color: #52c41a;
           }
 
           .completed .todo-title {
@@ -266,9 +258,7 @@ pub fn todo_list() -> Html {
 
                       html! {
                         <li key={&*entry.description} class={classes!(completed)}>
-                          <span class="check-btn" onclick={handle_toggle_complete(idx)}>
-                            <CheckIcon checked={entry.completed}/>
-                          </span>
+                          <CheckBox checked={entry.completed} onclick={handle_toggle_complete(idx)} />
                           <span class="todo-title">{&*entry.description}</span>
                           <span class="delete-btn" onclick={handle_delete(idx)}>
                               <DeleteIcon />
